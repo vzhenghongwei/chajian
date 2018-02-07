@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{margin: 0;padding: 0;}
+	i{font-style: normal;}
+	ul,li,dl,ol{list-style: none;}
+
+	#goTop{width: 40px;height: 40px; background: #ccc;border: 1px solid #999;border-radius: 4px;opacity: .5; position: fixed; right: 3%; bottom: 5%; text-align: center; line-height: 40px; color: #000;font-weight: bold; cursor: pointer; display: none;}
+	/*#goTop:hover{ background: #C04431; color: #fff; }
+	#goTop:hover span{display: block;}
+	#goTop span{position: absolute; right: 110%; bottom: 0%; width: 100px; height: 100px; background: #16C365; border-radius: 8px; display: none; line-height: 100px; text-align: center;}*/
+
+	#nav{position: fixed; top: 150px; left: 50px; width: 50px;border: 1px solid #ccc;border-bottom: none; display: none;}
+	#nav li{width: 50px; height: 50px; border-bottom: 1px solid #ccc; line-height: 50px;text-align: center;cursor: pointer;font-size: 14px;box-sizing: border-box;}
+	#nav li:hover span{ display: block !important; font-size: 12px; background: darkred; color: white;}
+	#nav li:hover i{ display: none !important;}
+	#nav li span{display: none;}
+
+	#nav .active{background: red; color: #fff;opacity: .5;}
+
+	#header{height: 200px; background: palegoldenrod; text-align: center; line-height: 200px; font-size: 72px; margin: 0 auto;}
+	.floor{ height: 810px; width: 100%;text-align: center; line-height: 800px; font-size: 120px; margin: 0 auto;}
+	</style>
+</head>
+<body>
+	<div id="nav">
+		<ul>
+			<li class="active"><i>1F</i><span>服饰</span></li>
+			<li><i>2F</i><span>美妆</span></li>
+			<li><i>3F</i><span>手机</span></li>
+			<li><i>4F</i><span>家电</span></li>
+			<li><i>5F</i><span>数码</span></li>
+			<li><i>6F</i><span>运动</span></li>
+			<li><i>7F</i><span>居家</span></li>
+			<li><i>8F</i><span>母婴</span></li>
+			<li><i>9F</i><span>食品</span></li>
+			<li><i>10F</i><span>图书</span></li>
+			<li><i>11F</i><span>服务</span></li>
+		</ul>
+	</div>
+	<div id="goTop">
+		
+	</div>
+	<div id="header">头部</div>
+	<div id="main">
+		<div class="floor" style="background: papayawhip;">服饰</div>
+		<div class="floor" style="background: peachpuff;">美妆</div>
+		<div class="floor" style="background: peru;">手机</div>
+		<div class="floor" style="background: pink;">家电</div>
+		<div class="floor" style="background: palegoldenrod;">数码</div>
+		<div class="floor" style="background: plum;">运动</div>
+		<div class="floor" style="background: powderblue;">居家</div>
+		<div class="floor" style="background: rosybrown;">母婴</div>
+		<div class="floor" style="background: cornflowerblue;">食品</div>
+		<div class="floor" style="background: mediumpurple;">图书</div>
+		<div class="floor" style="background: darkslateblue;">服务</div>
+	</div>	
+	<script type="text/javascript">
+        var nav = document.getElementById("nav");
+		var lc = document.getElementById("main").getElementsByTagName("div");
+		var lis =  document.getElementById("nav").getElementsByTagName("li");
+		var hei = lc[0].offsetHeight;
+
+
+		for (var i = 0; i < lis.length; i++) {
+			lis[i].index = i;
+			lis[i].onclick = function(){	
+				window.onscrol = null				
+				timer(lc[this.index].offsetTop)
+				bg(this.index);
+			}
+		}
+		
+		// 滚动事件
+		window.onscroll = function(){
+		 	count = document.body.scrollTop;
+		 	//滚动条高度
+		 	var sTop = document.body.scrollTop || document.documentElement.scrollTop;
+		 	//浏览器可视高度
+		 	var winH = window.innerHeight;
+		 	//获取滚动条高度数值
+			document.title = sTop;
+			//当滚动高度大于200时导航显示
+		 	if(sTop >= 200 ){
+		 		nav.style.display = "block"
+		 		//获取滚动高度所在的盒子下标
+		 		var scrollIndex = Math.floor((sTop)/hei);
+		 		//调用函数
+		 		bg(scrollIndex);
+		 	}else{
+		 		nav.style.display = "none"
+		 	}
+		}
+
+
+		 	var id;
+		 	//页面滚动高度
+			var count = document.body.scrollTop;
+			function timer(end){
+				//如果定时器存在清除定时器
+				if (id) clearInterval(id);
+				//结束值取整
+				end = Math.floor(end);
+				id = setInterval(function(){
+					//滚动高度 向上取整
+					var moveVal = Math.ceil(document.body.scrollTop);
+					console.log(moveVal)
+					//速度
+					var speed;
+					speed = (end - moveVal)/8>0 ? Math.ceil((end - moveVal)/8) : Math.floor((end - moveVal)/8);
+					if(end == moveVal){
+						clearInterval(id);
+					}else{
+						document.body.scrollTop = moveVal + speed;
+					}
+				},10)
+			}		
+			
+
+			function bg(currenIndex){
+				for(var j=0;j<lis.length;j++){
+					if(currenIndex == j){
+						lis[j].className = "active";
+						lis[j].firstElementChild.style.display = "none";
+						lis[j].lastElementChild.style.display = "block";
+					}else{
+						lis[j].className = "";
+						lis[j].firstElementChild.style.display = "block";
+						lis[j].lastElementChild.style.display = "none";
+					}
+				}
+			}
+
+
+	</script>
+</body>
+</html>

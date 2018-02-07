@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="7.17.css">
+    <style type="text/css">
+        .eleven{
+            cursor: pointer;
+        }
+    li{
+            list-style: none;
+            transition: all .5s;
+        }
+        .add{
+        	transform: rotate(360deg);
+        }
+    </style>
+</head>
+<body>
+<ul id="box" class="big-box">
+    <li value='0' class="one"></li>
+    <li  value='1' class="two"></li>
+    <li  value='2' class="three"></li>
+    <li  value='3' class="four"></li>
+    <li  value='11' class="five"></li>
+    <li  value='4' class="six"></li>
+    <br>
+    <li  value='10' class="seven"></li>
+    <li  value='5' class="eight"></li>
+    <li  value='9' class="nine"></li>
+    <li  value='8' class="ten"></li>
+    <li  value='7' class="ten-one"></li>
+    <li  value='6' class="ten-two"></li>
+    <li id="btn"  value='12' class="eleven">抽奖</li>
+</ul>
+
+<script type="text/javascript">
+    var box = document.getElementById('box').getElementsByTagName('li');
+    console.log(box);
+    for (var i = 0; i < box.length; i++) {
+        if(i==12){
+           continue
+        }else if(i===0){
+            console.log(i)
+            box[0].innerHTML = '究极皮怪奖励';
+             box[0].style.textAlign = 'center';
+        box[0].style.lineHeight = 150 +'px'; 
+        }else{
+            box[i].innerHTML = i + '等奖';
+        box[i].style.textAlign = 'center';
+        box[i].style.lineHeight = 150 +'px'; 
+        }     
+    }
+    var x= 100
+    var btn = document.getElementById('btn');
+    var currIndex = 0;
+    var time = null;
+   var arr = ['red','blue','green','orange','yellow','#fff','pink'];
+    btn.onclick = function (e) {
+    if(time) {return ; 
+   // btn.disabled = true;
+       }
+       //每次 相对值的时候动起来了 给个计时器
+    time=  setInterval(function(){
+    var math =  Math.floor(Math.random()*arr.length)
+         for (var i = 0; i < box.length; i++) {
+            //利用value 和 变量 相对键值对  1=1
+           if(box[i].value==currIndex) {
+            // 随便找一个 答案
+            resturt = i;
+            //  
+            box[i].style.backgroundColor = 'skyblue';
+           }else if(box[i].value==12){
+            // 抽奖 不能给颜色啊 等于抽奖的时候 跳过去
+          continue;
+           }
+           else{
+            // 否则其他div 就是随机颜色
+             box[i].style.backgroundColor = arr[math];
+           }
+        }
+        // 每一次递增
+       currIndex++;
+       if(currIndex > 11){ 
+        //  
+            currIndex = 0;
+                }else{
+
+                console.log(currIndex)
+                }
+         },100);
+         //你要转多久setTimeout 转一次
+        var settime = setTimeout(function(){
+        	 alert("您的抽奖结果："+box[resturt].innerText);
+                clearInterval(time);
+                time = null
+                // 停掉上一个计时器
+                //btn.disabled = false;
+                // 停止了 弹出结果
+               
+            },odm()*20);
+            }     
+            // 随机时间的
+        function odm(){
+            // 向下取     随机   *  多少次
+        var rand = Math.floor(Math.random()*x) + x;
+        return rand;
+        }
+</script>
+</body>
+</html>

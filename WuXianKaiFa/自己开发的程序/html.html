@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>asdsa</title>
+    <link rel="stylesheet" href="">
+    <style type="text/css">
+        .roter{
+            transition: all.5s;
+            transform:rotateY(180deg);
+        }
+    </style>
+</head>
+<body>
+
+
+     <div class='list'>
+
+     </div>
+     <script src="jquery.js"></script>
+     <script>
+
+         !(function() {   var arr = ['./img/image0006.png']
+         var path = ['./img/image0001.png','./img/image0002.png','./img/image0003.png','./img/image0004.png','./img/image0005.png','./img/image0007.png','./img/image0001.png','./img/image0002.png','./img/image0003.png','./img/image0004.png','./img/image0005.png','./img/image0007.png']
+         //sort 其实就是排序的  random  随机排序而已
+        　　r = path.sort(function(){
+        　　return Math.random() > .5 ? -1:1;
+        });
+         var list = document.querySelector('.list')
+         //设置一下样式
+         list.setAttribute('style','width:400px;height:400px;cursor:pointer')
+         //初始化
+         for (var i = 0; i < 12 ; i++) {
+            //创建十二个节点
+              var img = document.createElement('img')
+              img.className= 'imgs'
+              img.src = arr[0]
+              //添加到元素里面
+              list.appendChild(img)
+         };
+         var imgs = document.querySelectorAll('.imgs')
+         var num = 0
+         var time =null
+         var woth
+         let $index = null
+         var see = null
+         var one = 1
+
+        for (var i = 0; i < imgs.length; i++) {
+            imgs[i].index = i
+            imgs[i].onclick = function(){
+
+       var infos = localStorage.getItem('code')
+       console.log(infos)
+                 num++
+                 //做一个计数器
+                if(num==2){
+                 see = r[this.index]
+                if(time==see){
+                    //找出两个相等 然后找出坐标 然后删除
+             woth = [this.index]
+            imgs[woth].style.display = 'none'
+            imgs[$index].style.display = 'none'
+                }
+                //初始化
+                  init()
+                }
+         //        else if (see){
+         //          if(see==time){
+         //            woth = [this.index]
+
+         //  //  imgs[woth].style.display = 'none'
+         // //  imgs[$index].style.display = 'none'
+         //            console.log(see,time)
+         //          }
+         //        }
+                //else if(one==1){
+                        //---------------
+                // 替换笑脸 相对于路径
+                imgs[this.index].className = 'roter'
+                imgs[this.index].src = r[this.index];
+                 time = r[this.index]
+                 localStorage.setItem('code',time)
+               //  console.log(time)
+                 $index = [this.index]
+               // }
+
+            };
+        };
+
+
+
+
+
+        //这个函数就是初始化的
+        function init(){
+            for (var i = 0; i < imgs.length; i++) {
+                imgs[i].src = arr[0]
+                imgs[i].className = 'imgs'
+            };
+            num = 0
+
+        }
+        })()
+     </script>
+</body>
+</html>

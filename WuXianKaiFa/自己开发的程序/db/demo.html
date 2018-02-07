@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="./jquery.js"></script>
+</head>
+<body>
+	<input type="radio" name="it" id="" checked value="show">show
+	<input type="radio" name="it" id="" value="hide">hide
+	<input type="radio" name="it" id="" value="toggle">toggle
+	speed:
+	<input type="radio" name="ipt" id="" checked value="1000">1000
+	<input type="radio" name="ipt" id="" value="2000">2000
+	<input type="radio" name="ipt" id="" value="3000">3000
+	<button id="btn">执行</button>
+	<div id="box" style="width: 100px;height: 100px;background: pink"></div>
+	<script>
+	$("#btn").click(function () {
+			var fn = $("[name=it]:checked").val();
+			var speed = parseInt($("[name=ipt]:checked").val());
+			$("#box")[fn](speed);
+		});
+
+
+	</script>
+</body>
+</html>

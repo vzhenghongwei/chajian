@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+       <div class="box">
+       	wqewqew
+       </div>
+
+
+	<script type="text/javascript">
+		var box = document.getElementsByClassName('box')[0];
+		   // 事件监听器 第一个参  事件  第二个执行的方式  第三个冒泡或者捕获
+           box.addEventListener('click',function(e){
+                alert(1111)
+           },false);
+              box.addEventListener('click',function(e){
+                alert(22222)
+           },false);
+              // 两个事件或不干扰
+              // 如果 这样写 box.onclick = function （） {  不能写两个 下面事件 会把上面的覆盖 你可以试一下 }
+	</script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	table{
+		border: 1px solid #000;
+		cursor: pointer;
+
+	}
+	td{
+		border: 1px solid #000;
+
+	}
+	tr{
+		border: 1px solid #000;
+	}
+	.table{
+		transition: all .5s;
+	}
+</style>
+<body>
+	
+  weinre
+    -h 
+    看参数
+    http-sarver
+    bounhost
+        <div class="parent"></div>
+
+	<script type="text/javascript" src='node_modules/jquery/dist/jquery.js'></script>
+	<script type="text/javascript">
+           
+	       var table = '<table class="table">';
+		    for (var i = 0; i <= 9; i++) {
+		    	table+='<tr>';
+		    	// if(i%2==0){
+		    	// 	//console.log(i%2==0)
+       //             table.style.backgroundColor = 'red';
+
+		    	// }
+		        	for (var j = 1; j <= i ; j++) {
+		        	table+='<td>'+i+'*'+j+'='+i*j+'&nbsp'+'&nbsp';
+		        	table+='</td>'
+		        	};
+		        	table+='</tr>'
+		        	//document.write('<br>')
+		        }    
+		    table+= '</table>';
+		   
+		    var table_all = document.getElementsByClassName('table')[0];
+		    var  parent = document.getElementsByClassName('parent')[0];
+		      parent.innerHTML=table;
+		     parent.onmouseover = function(e){
+		     	var target_one = e.target || e.srcElement
+		     	
+		     	if(target_one.className = 'table'){
+					target_one.style.backgroundColor  = 'green';
+					target_one.style.color  = '#fff';
+		     	}
+		     	//console.log(e)
+		     	//console.log(_this)
+		     	
+		     }
+		     parent.onmouseout = function(e){
+		     	var target_one = e.target || e.srcElement
+		     	
+		     	if(target_one.className = 'table'){
+		     		//console.log(target_one)
+					target_one.style.backgroundColor  = '';
+					target_one.style.color  = 'black';
+		     	}
+		     	//console.log(e)
+		     	//console.log(_this)
+		     	
+		     }
+	</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>asdsa</title>
+        <style type="text/css">
+        .table tr td  {
+            height:30px;
+            text-align:center;
+        }
+    </style>
+</head>
+<body>
+   将第几行<input id="ipt" type="text" name="">换到 <input id="value" type="text" name="">第几行 <button class="btn" type="button">交换</button>
+
+
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <button class='ckeck' type="全选">全选</button>
+   <button class='falsecke' type="反选">反选</button>
+   <table   width="800px" cellspacing="0"l border cellpadding="0" class='table'>
+       <caption>table title and/or explanatory text</caption>
+       <tbody  class='tbody'>
+           <tr>
+               <td>data1</td>  <td><input type='checkbox'></td>  <td>data</td>  <td>data</td>  <td>data</td>
+           </tr>
+            <tr>
+               <td>data2</td>  <td><input type='checkbox'></td>  <td>data</td>  <td>data</td>  <td>data</td>
+           </tr>
+            <tr>
+               <td>data3</td>  <td><input type='checkbox'></td>  <td>data</td>  <td>data</td>  <td>data</td>
+           </tr>
+            <tr>
+               <td>data4</td>  <td><input type='checkbox'></td>  <td>data</td>  <td>data</td>  <td>data</td>
+           </tr>
+              <tr>
+               <td>data5</td>  <td><input type='checkbox'></td>  <td>data</td>  <td>data</td>  <td>data</td>
+           </tr>
+              <tr>
+               <td>data6</td>  <td><input type='checkbox'></td>  <td>data</td>  <td>data</td>  <td>data</td>
+           </tr>
+              <tr>
+               <td>data7</td>  <td><input type='checkbox'></td>  <td>data</td>  <td>data</td>  <td>data</td>
+           </tr>
+       </tbody>
+   </table>
+   <script src="jquery.js"></script>
+   <script>
+       $('.btn').click(function(){
+          let $value = $('#ipt').val();
+          let $input = $('#value').val();
+          if($value==0&&$input==0){
+                   alert('不能为0')
+          }else{
+              $('.tbody').children().eq($value-1).insertAfter($('.tbody').children().eq($input-1))
+   const a = $('.tbody').children().eq($input-2);
+       a.insertBefore( $('.tbody').children().eq($value-1))
+
+
+          }
+       });
+       $('.ckeck').click(_=>{
+           const b =  $('.tbody').children().children().children('input');
+            b.prop('checked',true)
+           console.log(b)
+       })
+
+       $('.falsecke').click(_=>{
+        const b =  $('.tbody').children().children().children('input');
+                b.each(function(i,n){
+                    $(this).prop('checked',!$(this).prop('checked'))
+                        //console.log(i,n)
+                })
+       })
+   </script>
+</body>
+</html>

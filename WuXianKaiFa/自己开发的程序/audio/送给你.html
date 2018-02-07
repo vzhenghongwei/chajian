@@ -1,0 +1,277 @@
+8<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	 	div{width:100px;height:50px;background:;
+	 	 margin: 20px;
+	 	 transition: all .6s;
+         cursor: pointer;
+         text-align: center;
+         
+          
+	 	}
+	 	#header{
+	 		
+	 		
+	 	}
+	 	body{
+	 		background:url('278b74fd072ef4285969384141cae0d031a274be.jpg');
+	 		background-repeat:no-repeat;
+	 		background-size: 100%;
+
+	 	}
+      .progressChange{width: 400px;height: 10px;background:#AFEEEE ;position: absolute;
+      left: 100px;
+      top: 100px;
+      cursor: pointer;
+      display: none;
+      
+      }
+      .progress{width: 0px;height:10px;background:black ;transition: all 0.5s;
+      cursor: pointer;
+      
+      }
+      .time{
+        color: red;
+      }
+      .muted{
+        width: 50px;
+        height: 50px;
+        border: 1px solid #000;
+        border-radius: 50%;
+        line-height: 50px;
+        text-align: center;
+        color: red;
+      }
+      #songsing_text{
+        color: red;
+        width: 300px;
+        position: absolute;
+        right: 10%;
+        height: 20px;
+        top: 50%;
+        margin-left:-150px;
+      }
+	 </style>
+</head>
+
+	
+
+<body>
+<header id="header">
+    <div>Nightwish - Escapist <span class="time"></span><aside class="progressChange">
+      <footer class="progress"></footer>
+    </aside></div>
+     <div>K from 凛として時雨 (北嶋彻) <span class="time"></span><aside class="progressChange">
+      <footer class="progress"></footer>
+    </aside></div>
+      <div>五音Jw - 明月天涯 <span class="time"></span><aside class="progressChange">
+      <footer class="progress"></footer>
+    </aside></div>
+       <div>橙光音乐 - 余香 <span class="time"></span><aside class="progressChange">
+      <footer class="progress"></footer>
+    </aside></div>
+        <div>爱德华的小说 <span class="time"></span><aside class="progressChange">
+      <footer class="progress"></footer>
+    </aside></div>
+
+     <div id="div_texst">偏爱 <span class="time"></span><aside class="progressChange">
+      <footer class="progress"></footer>
+    </aside></div>
+
+
+     <div>一吻天荒 <span class="time"></span><aside class="progressChange">
+      <footer class="progress"></footer>
+    </aside></div>
+         </header>
+         <section id="section">
+   <audio src="Nightwish - Escapist.mp3"></audio>
+   <audio src="TK from 凛として時雨 (北嶋彻) - unravel.mp3"></audio>
+   <audio src="五音Jw - 明月天涯.mp3"></audio>
+   <audio src="橙光音乐 - 余香.mp3"></audio>
+   <audio id="Aaiddehua" src="蒋蒋 - 爱德华的小说.mp3"></audio>
+    <audio id="Aaiddehua1" src="张芸京 - 偏爱.mp3"></audio>
+     <audio id="Aaiddehua" src="胡歌 - 一吻天荒.mp3"></audio>
+   </section>
+   <div id="muted">
+     静音
+   </div>
+   <div id="songsing_text">
+     
+   </div>
+   <script type="text/javascript" src='node_modules/jquery/dist/jquery.js'></script>
+<script type="text/javascript">
+     var divs = document.getElementById('header').getElementsByTagName('div');
+      var section = document.getElementById('section').getElementsByTagName('audio')
+       var arr = ['red','blue','pink','orange','black','skyblue'];
+         var timer = document.getElementsByTagName('span');
+          var footer = document.getElementsByTagName('footer');
+          var muted = document.getElementById('muted');
+          var fflag = true;
+          var songsing_text =document.getElementById('songsing_text');
+          var singsong = ['把昨天都作废现在你在我眼前',
+                          '我想爱请给我机会',
+                          '如果我错了也承担认定你就是答案',
+                          '我不怕谁嘲笑我极端',
+                          '相信自己的直觉',
+                          '顽固的人不喊累',
+                          '爱上你我不撤退',
+                          '我说过我不闪躲 我非要这麽做',
+                          '讲不听也偏要爱 更努力爱让你明白',
+                          '没有别条路能走你决定要不要陪我',
+                          '讲不听偏爱看我感觉爱',
+                          '等你的依赖 对你偏爱爱',
+                          '痛也很愉快',
+                          '把昨天都作废现在你在我眼前',
+                          '我想爱请给我机会',
+                          '如果我错了也承担认定你就是答案',
+                          '我不怕谁嘲笑我极端',
+                          '相信自己的直觉',
+                          '顽固的人不喊累',
+                          '爱上你我不撤退',
+                          '我说过我不闪躲 我非要这麽做',
+                          '讲不听也偏要爱 更努力爱让你明白',
+                          '没有别条路能走你决定要不要陪我',
+                          '讲不听偏爱看我感觉爱',
+                          '等你的依赖',
+                          '不后悔有把握',
+                          '我不闪躲 我非要这麽做',
+                          '讲不听也偏要爱 更努力爱让你明白',
+                          '没有别条路能走你决定要不要陪我',
+                          '讲不听偏爱看我感觉爱',
+                          '等你的依赖 对你偏爱',
+                          '痛也很愉快'];
+                  //  console.log(singsong)
+         var div_texst = document.getElementById('div_texst');
+        // console.log(div_texst)
+         var a =0;
+         var time2 =null;
+         div_texst.addEventListener('mouseover',function(){
+          //alert(1)
+           if(time2){
+             return
+           }
+          var  time2 =  setInterval(function(){
+
+                  a++;
+                //  console.log(singsong[31])
+                  if(a>=31){
+                     a=0;
+                     clearInterval(time2);
+                     time2 =null;
+                  }
+                 // console.log(singsong)
+                 songsing_text.innerText = singsong[a];
+               
+             },3000)     
+         })
+          muted.onclick = function(){
+            if(fflag){
+                for (var v = 0; v < section.length; v++) {
+                  section[v].muted=false;
+                }
+                this.innerHTML = '没静音';
+                this.style.color = 'red'
+                fflag=false
+            }else{
+          for (var s = 0; s < section.length; s++) {
+                  section[s].muted=true;
+                }
+                  this.innerHTML = '已静音';
+                   this.style.color = 'green'
+                //fflag=false
+               fflag=true;
+            }
+          }
+         // console.log(footer)
+  //console.log(divs,section)
+             for (var i = 0; i < divs.length; i++) {
+             	//console.log(4)
+             	divs[i].index = i;
+             	//console.log(divs[this.index])
+             	divs[i].onmouseover = function(){
+             		//console.log(1)
+       			// 	this.style.background = "skyblue";
+      				// startMove(this,400)
+             		for (var j = 0; j < divs.length; j++) {
+             		//	console.log(section[j])
+             			section[j].pause();
+             			divs[j].style.background = 'skyblue'
+
+             			//console.log(2)
+             		};
+             		 var time =  setInterval(  _ =>{
+             	 math = Math.floor(Math.random()*30)*3;
+             	// console.log(math)
+             	 divs[this.index].style.width = math+ '%';
+           				  },80);
+             		  var time =  setInterval(  _ =>{
+             	 math = Math.floor(Math.random()*100);
+             	 //console.log(math)
+             	 divs[this.index].style.height = math+ 'px';
+           				  },200);
+             		   var time =  setInterval(  _ =>{
+             	 math1 = Math.floor(Math.random()*arr.length);
+             	// console.log(math)
+             	divs[this.index].style.background = arr[math1];
+           				  },200);
+                   //  计时器
+          section[this.index].addEventListener("timeupdate", _ =>{
+            //console.log( section[this.index])
+                footer[this.index].style.width = section[this.index].currentTime / section[this.index].duration * 100 + "%";
+                
+                var str1 = formatSeconds(section[this.index].currentTime);
+                var str2 = formatSeconds(section[this.index].duration);
+                
+                timer[this.index].innerHTML = str1 + " / " + str2;                             
+            })
+                 //刘氏计时器
+             		 // console.log(math)
+             		section[this.index].play();
+
+             	}
+             };
+             function Audio(){
+             // console.log(section) 
+              var infos = $('#Aaiddehua').attr('ended');
+                // console.log(infos);
+                 if(infos==true){
+                  console.log(section[0])
+                      section[0].play();
+                 }
+             };
+             Audio(); 
+            function formatSeconds(value) {
+                var second = parseInt(value); // 秒
+                var minute = 0;               // 分
+                var hour = 0;                 // 时
+                if(second > 60) {
+                    minute = parseInt(second / 60);
+                    second = parseInt(second % 60);
+                    if(minute > 60) {
+                        hour = parseInt(minute/60);
+                        minute = parseInt(minute%60);
+                    }
+                }
+        
+               var result =second < 10?("0" + parseInt(second)):parseInt(second);
+                if(minute < 10) {
+                    result = "0" + parseInt(minute) + ":" + result;
+                }
+                if(hour < 10) {
+                    result ="0" + parseInt(hour) + ":" + result;
+                }
+                return result;
+            }
+              
+
+
+
+</script>
+
+</body>
+</html>
+
+

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>asd</title>
+    <link rel="stylesheet" href="">
+    <style type="text/css">
+    *{
+        padding: 0;
+        margin: 0;
+        list-style-type: none
+    }
+        #list{
+            display:flex;
+            flex-wrap: wrap;
+        }
+        #list li img{
+            width:100%;
+                   height:200px;
+        }
+        #list li{
+            width:30%;
+            margin-left:2%;
+            border:3px solid black;
+            margin-top:200px;
+            cursor:pointer;
+            position:relative;
+            overflow:hidden;
+        }
+        .child{
+            display:inline-block;
+            width:100%;
+            background:rgba(149, 149, 149, 0.5);
+            text-align:center;
+            position:absolute;
+            height:50px;
+            bottom:-50px;
+            z-index:99999;
+            left:0;
+            line-height:50px;
+            color:yellow;
+        }
+    </style>
+</head>
+<body>
+
+<ul id="list">
+    <li><img src="images/2-1305231414312R.jpg" alt=""><span class='child'>qq1195566313</span></li>
+    <li><img src="images/2-1305231414312R.jpg" alt=""><span class='child'>qq1195566313</span></li>
+    <li><img src="images/2-1305231414312R.jpg" alt=""><span class='child'>qq1195566313</span></li>
+</ul>
+    <script src="./jquery.js">
+    </script>
+    <script>
+         let timer = null
+         let j = -50
+         let lists = document.getElementById('list').getElementsByTagName('li')
+           for (var i = 0; i < lists.length; i++) {
+               lists[i].index = i
+               lists[i].onclick  = function(){
+                 let child = lists[this.index].children[1]
+
+                 var filter = child.parentNode.parentNode.children
+                 for (var x = 0; x < filter.length; x++) {
+                     var $init = filter[x].children[1]
+                     $init.style.bottom = '-50px'
+                 };
+                timer =  setInterval(function(){
+                    if(j<=0){
+                        console.log(j)
+                    child.style.bottom = (j++)+'px'
+                    }else{
+                        j= -50
+                       clearInterval(timer)
+                    }
+                 },10)
+               }
+           };
+              $('#list').children().mouseover(function(){
+            $(this).children('.child').animate({'bottom':'0'},100)
+            .parent().siblings().children('.child').animate({'bottom':'-50px'},10)
+            $(this).children().css({
+                'transition':'all .5s',
+                'transform':'scale(1.3)'
+            }).parent().siblings().children().css({
+                 'transition':'all .5s',
+                'transform':'scale(1)'
+            })
+        }).mouseout(function(){
+             $(this).children().css({
+                'transition':'all .5s',
+                'transform':'scale(1)'
+            })
+              $(this).children('.child').animate({'bottom':'-50px'},10)
+        })
+    </script>
+</body>
+</html>

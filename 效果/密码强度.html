@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>密码强度验证-jq22.com</title>
+<script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+<style>
+span {
+	width:80 px;
+	height:10 px;
+	display:inline - block;
+	background:deeppink;
+	margin - right:3 px;
+	font - size:18 px;
+	text - align:center;
+}
+</style>
+</head>
+<body>
+<input id="txt" type="text">
+<div id="box" style="margin-top: 4px;">
+    <span id="r">弱</span>
+    <span id="z">中</span>
+    <span id="q">强</span>
+</div>
+
+<script>
+/*
+ 	 1、一类字符 是   弱         纯数字  弱              纯字母  弱                  纯 特殊字符 弱
+ 	 2、两类字符 是   中   
+ 	 3、三类字符      强
+*/
+var txt = document.getElementById("txt");
+var r = document.getElementById("r");
+var z = document.getElementById("z");
+var q = document.getElementById("q");
+txt.onkeyup = function() {
+    var regxs = [];
+    regxs[0] = /[^a-zA-Z0-9]/g; //特殊
+    regxs[1] = /[a-zA-Z]/g; //字母
+    regxs[2] = /[0-9]/g; //数字
+    var str = txt.value;
+    var len = str.length;
+    var sec = 0; //强度
+    if (len >= 6) {
+        for (var i = 0; i < regxs.length; i++) {
+            if (str.match(regxs[i])) {
+                sec++;
+            }
+        }
+    }
+    if (sec == 0) {
+        r.style.backgroundColor = "deeppink";
+        z.style.backgroundColor = "deeppink";
+        q.style.backgroundColor = "deeppink";
+
+    } else if (sec == 1) {
+        r.style.backgroundColor = "blue";
+        z.style.backgroundColor = "deeppink";
+        q.style.backgroundColor = "deeppink";
+    } else if (sec == 2) {
+        r.style.backgroundColor = "blue";
+        z.style.backgroundColor = "blue";
+        q.style.backgroundColor = "deeppink";
+
+    } else if (sec == 3) {
+        r.style.backgroundColor = "blue";
+        z.style.backgroundColor = "blue";
+        q.style.backgroundColor = "blue";
+
+    }
+
+}
+</script>
+
+</body>
+</html>

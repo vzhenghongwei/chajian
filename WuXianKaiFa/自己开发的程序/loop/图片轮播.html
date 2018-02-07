@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml
+
+">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style type="text/css">
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        img {
+            width: 800px;
+            height: 500px;
+        }
+
+        .imgs {
+            position: absolute;
+        }
+
+        .btn {
+            position: absolute;
+            width: 60px;
+            height: 90px;
+            background: rgba(0,0,0,0.5);
+            color: #fff;
+            font-size: 40px;
+            text-align: center;
+            line-height: 90px;
+            top: 205px;
+        }
+
+        .btn2 {
+            left: 740px;
+        }
+
+        ul {
+            position: absolute;
+            top: 450px;
+            left:38%;
+            list-style: none;
+        }
+
+        .tab {
+            width:20px;
+            height:20px;
+            background-color:#808080;
+            float:left;
+            text-align:center;
+            line-height:30px;
+            color:#fff;
+            margin-left:10px;
+            border-radius:100%;
+        }
+        .tab1 {
+            background-color:#fff;
+        }
+    </style>
+    <script type="text/javascript" src="jq3.1.js"></script>
+    <script type="text/javascript">
+        var i = 0;
+        var timer = null
+        $(function () {
+            $('#list').children().mouseover(function(){
+                var $index = $(this).index();
+                  $(".imgs").eq($index).fadeIn().siblings().fadeOut();
+                    $("li").eq($index).addClass("tab1").siblings().removeClass("tab1");
+                    i = $index
+                    clearInterval(timer)
+            }).mouseout(function(){
+                loop()
+            })
+            $('.btn1').click(function(){
+                i--;
+                $(".imgs").eq(i).fadeIn().siblings().fadeOut();
+                $("li").eq(i).addClass("tab1").siblings().removeClass("tab1");
+                if(i==0){
+                   i=6
+                }
+                //timer = null
+                clearInterval(timer)
+            }).mouseout(function(){
+                loop()
+            })
+            $('.btn2').click(function(){
+                i++;
+                $(".imgs").eq(i).fadeIn().siblings().fadeOut();
+                $("li").eq(i).addClass("tab1").siblings().removeClass("tab1");
+                if(i==6){
+                   i=0
+                }
+            //    timer = null
+                clearInterval(timer)
+            }).mouseout(function(){
+                loop()
+            })
+            function loop () {
+              //  if(timer){
+              //      return
+               // }
+                $(".imgs").eq(0).show().siblings().hide();
+            timer = setInterval(function () {
+                if (i == 6) {
+                    i = 0;
+                }
+                $(".imgs").eq(i).fadeIn().siblings().fadeOut();
+                $("li").eq(i).addClass("tab1").siblings().removeClass("tab1");
+                    i++;
+            }, 2000);
+            }
+
+        })
+    </script>
+</head>
+<body>
+    <div id="img">
+        <img class="imgs" src="images/1.jpg" />
+        <img class="imgs" src="images/2.jpg" />
+        <img class="imgs" src="images/3.jpg" />
+        <img class="imgs" src="images/4.jpg" />
+        <img class="imgs" src="images/5.jpg" />
+        <img class="imgs" src="images/6.jpg" />
+    </div>
+    <ul id="list">
+        <li class="tab tab1"></li>
+        <li class="tab"></li>
+        <li class="tab"></li>
+        <li class="tab"></li>
+        <li class="tab"></li>
+        <li class="tab"></li>
+    </ul>
+    <div class="btn btn1"><</div>
+    <div class="btn btn2">></div>
+</body>
+</html>

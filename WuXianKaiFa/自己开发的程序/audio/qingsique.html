@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		ul li{
+			width: 300px;
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+          <div id="top">
+          	<ul>
+          		<li>a1</li>
+          		<li>a1</li>
+          		<li>a3</li>
+          		<li>a1</li>
+          		<li>a5</li>
+          	</ul>
+          </div>
+	<script type="text/javascript">
+		window.onload = function(){
+			var li,a = '';
+			var d =document.getElementsByTagName('div');
+			for (var i = 0; i < d.length; i++) {
+				if(d[i].id=='top'){
+					a=d[i].getElementsByTagName('li');
+					for (var j = 0; j < a.length; j++) {
+						a[j].onmouseover = function(){
+							show(j)
+						};
+						a[j].onmouseover = new Function("show('+j+')")
+							
+						
+					}
+				}
+			}
+		}
+
+           function show(z)
+             {alert(z)}
+           
+
+	</script>
+</body>
+</html>

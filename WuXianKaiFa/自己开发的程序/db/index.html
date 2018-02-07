@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>asdsa</title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+     <div class='anmite'>
+         <label><input type="radio" name="one" value="show">show</label>
+         <label><input type="radio" name="one" value="hide">hide</label>
+         <label><input type="radio" name="one" value="toggle">toggle</label>
+     </div>
+     <br>
+     <br>
+     <br>
+     <br>
+    <div class='label'>
+        speed
+          <label><input type="radio" name="two" value="1000">1000</label>
+         <label><input type="radio" name="two" value="3000">3000</label>
+         <label><input type="radio" name="two" value="5000">5000</label>
+    </div>
+    <button class='btn'>apply</button>
+    <div class='play' style='width:200px;height:200px;border:1px solid #ccc'>
+        执行动画
+    </div>
+    <script src="./jquery.js"></script>
+    <script>
+      !(function($){
+         var $value = ''
+         var $option = ''
+         $('.anmite').children().children().change(function(){
+            //console.log($(this).prop('checked'))
+            if($(this).prop('checked')==true){
+              $value  =   $(this).val();
+            }
+
+         })
+                 $('.label').children().children().change(function(){
+            //console.log($(this).prop('checked'))
+            if($(this).prop('checked')==true){
+              $option  =   $(this).val();
+            }
+
+         })
+        $('.btn').click(function(){
+            if($value==''&&$option==''){
+                 return false
+            }else{
+             $('.play')[$value]($option)
+            }
+
+        })
+      })(jQuery)
+    </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+		#box{
+			width: 600px;
+			height: 600px;
+			/*background: pink;*/
+			margin: 100px auto;
+		}
+		li{
+			list-style: none;
+			float: left;
+			width: 200px;
+			height: 200px;
+			border: 1px solid #ccc;
+			box-sizing: border-box;
+			line-height: 200px;
+			text-align: center;
+			background: pink;
+			color: #fff;
+			font-size: 20px;
+			transition: all .5s;
+		}
+		#btn{
+			cursor: pointer;
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<ul>
+			<li value="0">游轮</li>
+			<li value="1">郭刘朋</li>
+			<li value="2">航母</li>
+			<li value="7">王江浩</li>
+			<li id="btn">抽奖</li>
+			<li value="3">别墅</li>
+			<li value="6">兰博基尼</li>
+			<li value="5">女朋友</li>
+			<li value="4">代无敌</li>
+		</ul>
+	</div>
+
+	<script>
+		var lis = document.getElementById("box").getElementsByTagName("li"); 
+		var currentIndex = 0;
+		btn.onclick = function(){
+			
+			var ii = null;
+			if(window.id) clearInterval(window.id);
+			btn.disabled = true;
+			
+			window.id = setInterval(function(){
+				console.log(window.id)
+				for(var i=0;i<lis.length;i++){
+					if( i == 4 ) continue;
+					if(lis[i].value == currentIndex){
+						ii = i;
+						//console.log(ii)
+						lis[i].style.background = "skyblue";
+					}else{
+						lis[i].style.background = "pink";
+					}
+				}
+				currentIndex++;
+				if(currentIndex > 8){ 
+					currentIndex = 0;
+				}
+			},100);
+			setTimeout(function(){
+				btn.disabled = false;
+				clearInterval(window.id);
+				alert("您的抽奖结果："+lis[ii].innerHTML);
+			},rand()*10);
+		}
+
+		function rand(){
+			var rand = Math.floor(Math.random()*110) + 100;
+			return rand;
+		}
+		
+
+
+		
+	</script>
+</body>
+</html>

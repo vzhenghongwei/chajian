@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/swiper.css"/>
+		<link rel="stylesheet" type="text/css" href="css/animate.min.css"/>
+		<style type="text/css">
+			.nihao{
+				width: 200px;
+				height: 200px;
+				margin: 0 auto;
+			}
+			.nihao p{
+				text-align: center;
+				font-size: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" width="500" height="500"></canvas>
+			<p class="ani" swiper-animate-effect="tada" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s">你好啊</p>
+		<script src="js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/swiper.jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/swiper.animate1.0.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var canvas = document.getElementById("canvas");
+			var txh = canvas.getContext("2d");
+			txh.beginPath();
+			txh.fillStyle = "red";
+			txh.arc(150,150,100,Math.PI*1.15,Math.PI*1.9);
+			txh.lineTo(115,120);
+			txh.lineTo(115,150);
+			txh.fill();
+			txh.beginPath();
+			txh.moveTo(150,120);
+			txh.fillStyle = "yellow";
+			txh.arc(150,150,100,Math.PI*1.9,Math.PI*0.5);
+			txh.lineTo(180,120);
+			txh.fill();
+			txh.beginPath();
+			txh.moveTo(180,120);
+			txh.fillStyle = "green";
+			txh.arc(150,150,100,Math.PI*0.5,Math.PI*1.15);
+			txh.lineTo(115,150);
+			txh.fill();
+			txh.beginPath();
+			txh.fillStyle = "white";
+			txh.arc(150,150,60,Math.PI*0,Math.PI*2);
+			txh.fill();
+			txh.beginPath();
+			txh.arc(150,150,50,Math.PI*0,Math.PI*2);
+			txh.fillStyle="#007AFF";
+			txh.fill();
+		</script>
+		<!--<script type="text/javascript">
+			var oCanvas={
+			$ele:null,
+			ele:null,
+			context:null
+			}
+			$(function(){
+			oCanvas.ele=document.getElementById('canvas');
+			oCanvas.context=oCanvas.ele.getContext('2d');
+			oCanvas.$ele=$(oCanvas.ele);
+			//red
+			oCanvas.context.fillStyle="#E6433C";
+			oCanvas.context.arc(172,172,172,1.1445*Math.PI,1.8555*Math.PI);
+			oCanvas.context.lineTo(172,96);
+			oCanvas.context.lineTo(100,200);
+			oCanvas.context.closePath();
+			oCanvas.context.fill();
+			oCanvas.context.translate(412,143)
+			oCanvas.context.rotate(128.8*Math.PI/180);
+			//yellow
+			oCanvas.context.beginPath();
+			oCanvas.context.fillStyle="#FCD20A";
+			oCanvas.context.arc(172,172,172,1.1445*Math.PI,1.8555*Math.PI);
+			oCanvas.context.lineTo(172,96);
+			oCanvas.context.lineTo(100,200);
+			oCanvas.context.closePath();
+			oCanvas.context.fill();
+			oCanvas.context.translate(412,143)
+			oCanvas.context.rotate(128.8*Math.PI/180);
+			//green
+			oCanvas.context.beginPath();
+			oCanvas.context.fillStyle="#4DB749";
+			oCanvas.context.arc(172,172,172,1.1445*Math.PI,1.8555*Math.PI);
+			oCanvas.context.lineTo(172,96);
+			oCanvas.context.lineTo(100,200);
+			oCanvas.context.closePath();
+			oCanvas.context.fill();
+			//中间圆圈
+			oCanvas.context.beginPath();
+			oCanvas.context.fillStyle="#7BAFDE";
+			oCanvas.context.lineWidth="12";
+			oCanvas.context.strokeStyle="#F7F2EF";
+			oCanvas.context.arc(172,172,72,0*Math.PI,2*Math.PI);
+			oCanvas.context.fill();
+			oCanvas.context.stroke();
+			})
+		</script>-->
+	</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>asdsadas</title>
+    <link rel="stylesheet" href="">
+    <style type="text/css">
+    *{
+        margin:0;
+        padding:0;
+    }
+    body{
+        background-color:#000;
+        overflow:hidden;
+    }
+    #wrap{
+      perspective:800px;
+    }
+    #img{
+            position:relative;
+            width:133px;
+            height:180px;
+            margin:200px auto;
+            transform-style:preserve-3d;
+            transform:rotateX(-20deg) rotateY(0deg);
+    }
+        #img img{
+            transform:rotateY(0deg) translateZ(0px);
+            position:absolute;
+              width:133px;
+              transition:.5s;
+        }
+    </style>
+</head>
+<body>
+
+
+     <div id="wrap">
+         <div id="img">
+             <img src="小龙老师/1.jpg" alt="">
+              <img src="小龙老师/2.jpg" alt="">
+               <img src="小龙老师/3.jpg" alt="">
+                <img src="小龙老师/4.jpg" alt="">
+                 <img src="小龙老师/5.jpg" alt="">
+                  <img src="小龙老师/6.jpg" alt="">
+                   <img src="小龙老师/7.jpg" alt="">
+                    <img src="小龙老师/8.jpg" alt="">
+                     <img src="小龙老师/9.jpg" alt="">
+                      <img src="小龙老师/10.jpg" alt="">
+                       <img src="小龙老师/11.jpg" alt="">
+
+         </div>
+     </div>
+     <script>
+         var Deg = 360/11;
+         var imgs = document.getElementsByTagName('img')
+         window.onload = function(){
+             Array.prototype.forEach.call(imgs,function(el,index,arr){
+              //  console.log(el)
+            //el.style.transition = '0.5s'+(11-index)*0.1+'s'
+            el.style.transform = 'rotateY('+index*Deg+'deg)translateZ(350px)';
+            el.style.transition = '0.5s'+(11-index)*0.1+'s'
+         })
+         }
+
+       var nowX,nowY,lastX,lastY,minuX,minuY
+       var rotX = -20,rotY = 0
+       var o = document.getElementById('img')
+       document.onmousedown = function(e){
+         lastX = e.clientX
+         lastY = e.clientY
+         this.onmousemove = function(e){
+           nowX =  e.clientX
+           nowY = e.clientY
+
+           minuX=nowX-lastX
+           minuY=nowY-lastY
+
+            rotY+=minuX*0.2
+            o.style.transform ='rotateX(-20deg) rotateY('+rotY+'deg)'
+           lastX = nowX
+           lastY = nowY
+         }
+         this.onmouseup = function(e){
+           this.onmousemove = null
+         }
+       }
+     </script>
+</body>
+</html>

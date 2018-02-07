@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数组</title>
+</head>
+<body>
+	<script>
+		// 数组的函数对象：Array
+		// 数组实例对象里的方法来自于数组函数对象的原型：prototype==》原型对象
+
+
+		// 实例对象的__proto__是来自于函数对象的原型
+		// console.log(Array.prototype);
+		// console.log([].__proto__ == Array.prototype);
+		// console.log([]);
+		// console.log(String.prototype)
+
+		// 数组的方法：
+
+		// 转换方法：
+		// 1、字符串转数组：*.split(分割符)
+		// 分隔符：可选参数，如果参数省略，则把整个字符串作为数组的一个元素处理
+		// var str = "a|b|c|d";
+		// console.log(str.split("a"));
+		// var str = "abcd"; // ["a","b","c","d"]
+		// "a" + "" + "b" + "" + "c" + "" + "d" == "abcd"
+		// console.log(str.split(""));
+
+		// var str = "abacadae";
+		// 一行代码实现统计a出现的次数
+		// console.log(str.split("a"));
+		// console.log(str.split("a").length - 1);
+		// 如何判断一个字符串中是否存在某个字符
+		// console.log(str.split("f"));
+		// console.log(str.split("f").length - 1 == 0);
+		// var count = 0;
+		// for(var i=0;i<str.length;i++){
+			// if(str[i] == "a"){
+				// count++;
+			// }
+		// }
+
+		// 2、数组转字符串：*.toString()、*.join(分隔符)
+		// toString()数组转字符串默认用逗号隔开
+		// 数组遇到+号之后，都是用toString方法转成字符串，然后在进行运算
+		// var arr = ["a","b","c","d"];
+		// var arr1 = [1,2,3,4];
+		// console.log(arr.toString());
+		// console.log(arr + undefined);
+		// console.log(arr + arr1);
+
+
+		// join(分隔符) 
+		// var arr = [1,2,3,4];
+		// console.log(arr.join(""));
+
+		// 栈方法：
+		// 压栈方法：向数组的尾部添加一个或多个元素，并返回数组新的长度 *.push(ele1,ele2,....)
+		// 出栈方法：从数组的尾部删除一个元素，并返回被删除的元素
+		// *.pop()
+		var arr = [0];
+		console.log(arr.push(1,2,3,4,5));
+		console.log(arr);
+		// arr[0] = 0;
+		// arr[10] = 10;
+		console.log(arr.pop());
+		console.log(arr);
+
+
+		// 队列方法：
+		// 压队方法：向数组的头部添加一个或多个元素，并返回数组新的长度 *.unshift(ele1,ele2,.....)
+		// 出队方法：从数组的头部删除一个元素，并返回被删除的元素
+		// *.shift()
+		console.log(arr.unshift(-2,-1));
+		console.log(arr);
+		console.log(arr.shift());
+		console.log(arr);
+
+		// 实现以上数组的翻转：
+		// var tempArr = [];
+		// i = 0; -1 [-1]
+		// i = 1; 0  [0,-1]
+		// .....
+		// for(var i=0;i<arr.length;i++){
+		// 	tempArr.unshift(arr[i]);
+		// }
+		// console.log(tempArr);
+
+		// 不能使用系统所带的方法，实现数组的翻转
+		// var tempArr = [];
+		// i = 0; -1 arr[arr.length - 1 - i] = -1
+		// i = 0  5  arr.length - 1 - i
+		// i = 1  4
+		// i = 2  3
+		// i = 3  2
+		// i = 4  1
+		// i = 5  0
+		// for(var i=0;i<arr.length;i++){
+		// 	tempArr[arr.length - 1 - i] = arr[i];
+		// }
+		// console.log(tempArr);
+
+		// 排序方法：
+		// 数组的翻转：reverse()  排序：sort()  
+		// 数组的翻转方法也会改变原本的数组数
+		// console.log(arr.reverse());
+
+		// sort() 排序，默认是升序 该方法会改变原本的数组
+		// var arr = [21,34,5,12,112,334,9];
+		// console.log(arr.sort(),arr);
+		// arr.sort(function(a,b){
+		// 	return a - b;
+		// });
+		// console.log(arr);
+
+		// 位置方法：indexOf()  lastIndexOf()
+		// 从指定数组中从前向后搜索某个元素首次出现的位置，如果不存在，则返回-1。字符串对象的原型中也存在这两个方法，功能是一样的
+		// [-1,0,1,2,3,4,-1]
+		// arr.push(-1);
+		// console.log(arr);
+		// console.log(arr.indexOf(-1),arr.lastIndexOf(-1));
+
+
+		// 数组的去重：
+		// var arr = [1,2,3,4,1,1,1,1,2];
+		// var tempArr = [];
+		// console.log(tempArr.indexOf(1) == -1);
+		// for(var i=0;i<arr.length;i++){
+		// 	// 判断该元素是否在tempArr这个数组里存在，如果存在，返回对应的位置，如果不存在，返回-1，不存在，则把该元素添加到tempArr数组里
+		// 	if(tempArr.indexOf(arr[i]) == -1){
+		// 		tempArr.push(arr[i]);
+		// 	}
+		// }
+		// console.log(tempArr);
+
+		// var arr = [1,2,3,4,1,1,1,1,2];
+		// var tempArr = [];
+		// for(var i=0;i<arr.length;i++){
+		// 	for(var j=i+1;j<arr.length;j++){
+		// 		if(arr[i] == arr[j]) j = ++i;
+		// 	}
+		// 	tempArr.push(arr[i]);
+		// }
+		// console.log(tempArr);
+		// 操作方法：
+		// 数组的合并：concat()
+		// 该刚发不会改变原本的数组，会重新创建一个新数组，新数组就是合并之后的数组
+
+		// console.log(String.prototype);
+		// var arr = new Array(9);
+		// var arr1 = [3,4];
+		// var arr2 = "ab";
+		// console.log(arr2.concat(arr,arr1,5,6).length);
+
+		// 数组的截取：slice()、splice()
+		// slice() 有两个可选参数  不会改变原本的数组
+		// 第一个参数代表的是起始下标，包含起始下标对应的元素
+		// 第二参数代表的是结束下标，截取的时候，不包含结束下标对应的元素
+		// 参数默认不写：截取数组的全部
+		// var arr = [1,2,3,4,5,6];
+		// console.log(arr.slice());
+		// 只写一个参数：从当前起始下标对应的元素开始，截取剩余的全部
+		// 如果是负数，则反向截取，截取的元素跟数字的大小有关系
+		// console.log(arr.slice(-8));
+
+		// 参数都不省略：第一个参数不支持负数，第二个参数支持负数
+		// console.log(arr.slice(1,-2));
+
+
+		// splice(startIndex,length,ele1,ele2,.....) 会改变原本的数组
+		// 若干个可选参数，但重要的是前两个
+		// 返回值是数组被截取的部分
+		// 该方法的功能：截取、删除、添加、替换
+		// var arr = [1,2,3,4,5,6,7,8,9];
+		// // console.log(arr.splice(1));
+		// // console.log(arr);
+		// // console.log(arr.splice(1,10),arr);
+		// arr.splice(1,2); // [1,4,5,6,7,8,9]
+		// console.log(arr.splice(1,0,2,3));
+		// arr.splice(1,2,22,33);
+		// console.log(arr);
+
+
+
+		// 原生数组的排序：冒泡排序
+		var arr = [];
+	</script>
+</body>
+</html>
